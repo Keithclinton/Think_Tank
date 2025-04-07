@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.56b0aded.css",
+    "main.js": "/static/js/main.db10fbdf.js",
+    "static/media/Business Strategy Image.jpg": "/static/media/Business Strategy Image.ec783586692f4b1685c3.jpg",
+    "static/media/Market Strategy Image.jpg": "/static/media/Market Strategy Image.84455c27bd61628c442d.jpg",
+    "static/media/Personal Growth Image.png": "/static/media/Personal Growth Image.9fe2830cbef95f128e39.png",
+    "static/media/Consultation Image.png": "/static/media/Consultation Image.665911a2e51e1829d515.png",
+    "static/media/Logo.jpg": "/static/media/Logo.8ad3102e6d84d701aa58.jpg",
+    "index.html": "/index.html",
+    "main.56b0aded.css.map": "/static/css/main.56b0aded.css.map",
+    "main.db10fbdf.js.map": "/static/js/main.db10fbdf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.56b0aded.css",
+    "static/js/main.db10fbdf.js"
+  ]
+}
