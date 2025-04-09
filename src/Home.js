@@ -13,6 +13,7 @@ import InnovationStrategies from "./assets/Innovation Strategies.png";
 function ThinkTankLanding() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -30,8 +31,9 @@ function ThinkTankLanding() {
   return (
     <div className="bg-white text-black font-sans">
       {/* Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 px-6 transition-all duration-300 bg-yellow-400 shadow-md ${isScrolled ? "py-2 shadow-lg" : "py-4"}`}>
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 transition-all duration-300 bg-yellow-400 shadow-md">
         <div className="flex items-center justify-between">
+          {/* Logo and Title */}
           <div className="flex flex-col items-start space-y-2">
             <div className="flex items-center space-x-3">
               <img src={Logo} alt="Logo" className="h-10 w-auto rounded" />
@@ -39,13 +41,47 @@ function ThinkTankLanding() {
             </div>
             <h2 className="text-lg md:text-xl font-bold italic">“Changing Lives, Striving for Excellence”</h2>
           </div>
-          <ul className="flex space-x-6 font-semibold">
-            <li><a href="#about" className="hover:text-gray-700">About</a></li>
+
+          {/* Hamburger Menu for Mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-black focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex space-x-6 font-semibold ml-auto">
             <li><a href="#programs" className="hover:text-gray-700">Programs</a></li>
             <li><a href="#blog" className="hover:text-gray-700">Blog</a></li>
             <li><a href="#contact" className="hover:text-gray-700">Contact</a></li>
           </ul>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isMenuOpen && (
+          <ul className="md:hidden mt-4 space-y-4 font-semibold text-center bg-yellow-300 rounded shadow-lg p-4">
+            <li><a href="#about" className="block hover:text-gray-700">About</a></li>
+            <li><a href="#programs" className="block hover:text-gray-700">Programs</a></li>
+            <li><a href="#blog" className="block hover:text-gray-700">Blog</a></li>
+            <li><a href="#contact" className="block hover:text-gray-700">Contact</a></li>
+          </ul>
+        )}
       </nav>
 
       <div className="pt-32">
