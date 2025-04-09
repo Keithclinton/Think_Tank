@@ -1,120 +1,253 @@
-import React, { useState } from "react";
-import Image1 from "./assets/Business Strategy Image.jpg";
-import Image2 from "./assets/Consultation Image.png";
-import Image3 from "./assets/Market Strategy Image.jpg";
-import Image4 from "./assets/Personal Growth Image.png";
+import React, { useEffect, useState } from "react";
+import FadeInSection from "./components/FadeInSection";
+import HeadingWithLine from "./components/HeadingWithLine";
+import Loader from "./components/Loader";
+
 import Logo from "./assets/Logo.jpg";
+import PersonalExcellence from "./assets/Personal Excellence.png";
+import ProfessionalExcellence from "./assets/Professional Excellence.png";
+import BusinessExcellence from "./assets/Business Exellence.png";
+import HelpImage from "./assets/Help.png";
+import InnovationStrategies from "./assets/Innovation Strategies.png";
 
-const ThinkTankLanding = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+function ThinkTankLanding() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  if (loading) return <Loader />;
 
   return (
-    <div className="bg-white text-black min-h-screen scroll-smooth">
+    <div className="bg-white text-black font-sans">
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-6 py-4 bg-white shadow-md fixed top-0 left-0 right-0 z-50">
-        <div className="flex items-center space-x-2">
-          <img src={Logo} alt="Logo" className="w-10 h-10 object-contain" />
-          <span className="font-bold text-xl text-yellow-500">Think Tank</span>
-        </div>
-        <div className="hidden md:flex space-x-6">
-          <a href="#about" className="hover:text-yellow-500 font-medium">About</a>
-          <a href="#programs" className="hover:text-yellow-500 font-medium">Programs</a>
-          <a href="#newsletter" className="hover:text-yellow-500 font-medium">Newsletter</a>
-        </div>
-        <button onClick={toggleMenu} className="md:hidden text-2xl focus:outline-none">
-          ☰
-        </button>
-
-        {menuOpen && (
-          <div className="absolute top-16 left-0 w-full bg-white shadow-lg py-4 px-6 flex flex-col space-y-4 md:hidden z-40">
-            <a href="#about" className="hover:text-yellow-500 font-medium" onClick={toggleMenu}>About</a>
-            <a href="#programs" className="hover:text-yellow-500 font-medium" onClick={toggleMenu}>Programs</a>
-            <a href="#newsletter" className="hover:text-yellow-500 font-medium" onClick={toggleMenu}>Newsletter</a>
+      <nav className={`fixed top-0 left-0 right-0 z-50 px-6 transition-all duration-300 bg-yellow-400 shadow-md ${isScrolled ? "py-2 shadow-lg" : "py-4"}`}>
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start space-y-2">
+            <div className="flex items-center space-x-3">
+              <img src={Logo} alt="Logo" className="h-10 w-auto rounded" />
+              <h1 className="font-bold text-xl">THINK TANK SOLUTIONS ORIENTED</h1>
+            </div>
+            <h2 className="text-lg md:text-xl font-bold italic">“Changing Lives, Striving for Excellence”</h2>
           </div>
-        )}
+          <ul className="flex space-x-6 font-semibold">
+            <li><a href="#about" className="hover:text-gray-700">About</a></li>
+            <li><a href="#programs" className="hover:text-gray-700">Programs</a></li>
+            <li><a href="#blog" className="hover:text-gray-700">Blog</a></li>
+            <li><a href="#contact" className="hover:text-gray-700">Contact</a></li>
+          </ul>
+        </div>
       </nav>
 
-      {/* Header Section */}
-      <header className="flex flex-col items-center justify-center text-center py-32 px-4 bg-yellow-400">
-        <h1 className="text-5xl font-bold text-black animate-fadeIn">Think Tank Solutions</h1>
-        <p className="text-lg mt-2 text-gray-800 animate-fadeIn delay-100">
-          Innovative Strategies for Personal and Organizational Transformation
-        </p>
-        <a href="#newsletter" className="mt-4 px-6 py-2 bg-black text-white font-bold rounded hover:bg-gray-800 transition">
-          Get Started
-        </a>
-      </header>
+      <div className="pt-32">
+        {/* Hero Section */}
+        <FadeInSection>
+          <section className="text-center py-16 bg-black text-white px-4 relative">
+            <p className="mt-4 text-xl">“We believe every problem has a solution.”</p>
+            <p className="mt-4 text-lg max-w-2xl mx-auto">
+              We’re dedicated to transforming challenges into opportunities...
+            </p>
+            <p className="mt-4 text-yellow-400 font-semibold">🎯 That’s where we come in.</p>
+            <button className="mt-6 px-8 py-3 bg-yellow-400 text-black font-bold rounded hover:bg-yellow-300 transform transition duration-300 hover:scale-105">
+              Get Started
+            </button>
 
-      {/* About Section */}
-      <section id="about" className="max-w-5xl mx-auto text-center py-16 px-4 animate-fadeIn">
-        <h2 className="text-3xl font-bold text-yellow-500">About Us</h2>
-        <p className="mt-4 text-gray-700">
-          Think Tank Solutions is a professional development and transformation organization committed to nurturing excellence. 
-          We offer holistic programs designed to cultivate leaders, empower youth, and enable businesses to thrive in dynamic environments. 
-          We believe in purpose-driven transformation that not only improves systems and structures, but also transforms mindsets.
-        </p>
-        <img src={Image1} alt="Business Strategy" className="mx-auto mt-8 rounded-lg shadow-lg w-full max-w-xl" />
-      </section>
-
-      {/* Services Section */}
-      <section id="programs" className="max-w-6xl mx-auto py-16 px-4">
-        <h2 className="text-3xl font-bold text-yellow-500 text-center animate-fadeIn">Our Programs & Services</h2>
-        <div className="grid md:grid-cols-2 gap-10 mt-12">
-          {[
-            {
-              title: "Business & Personal Excellence Training",
-              desc: "Realize your full potential through mindset coaching, vision alignment, and purpose discovery.",
-              img: Image2
-            },
-            {
-              title: "Organizational Strategy & Market Positioning",
-              desc: "Identify market gaps, build strategic plans, and align your brand with client needs.",
-              img: Image3
-            },
-            {
-              title: "The Boy Program",
-              desc: "Mentoring boys into responsible leaders through coaching, safe spaces, and purpose-driven learning.",
-              img: Image4
-            },
-            {
-              title: "Future Leaders Mentorship",
-              desc: "Early purpose discovery, values education, and practical skills development for the next generation.",
-              img: Image4
-            }
-          ].map((item, idx) => (
-            <div key={idx} className="animate-fadeInUp delay-100">
-              <h3 className="text-xl font-semibold text-black">{item.title}</h3>
-              <p className="mt-2 text-gray-700">{item.desc}</p>
-              <img src={item.img} alt={item.title} className="mt-4 rounded-lg shadow-md" />
+            {/* Wave Background */}
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none -z-10">
+              <svg viewBox="0 0 1440 320" className="w-full">
+                <path
+                  fill="#facc15"
+                  d="M0,64L48,90.7C96,117,192,171,288,181.3C384,192,480,160,576,160C672,160,768,192,864,192C960,192,1056,160,1152,133.3C1248,107,1344,85,1392,74.7L1440,64L1440,320L0,320Z"
+                ></path>
+              </svg>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+        </FadeInSection>
 
-      {/* Newsletter Section */}
-      <section id="newsletter" className="text-center py-16 px-4 bg-yellow-400">
-        <h2 className="text-3xl font-bold text-black">Join Our Mailing List</h2>
-        <p className="mt-2 text-gray-800">Get updates on new programs, events, and inspirational content.</p>
-        <form className="mt-6 max-w-md mx-auto space-y-4">
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="w-full p-3 rounded border border-gray-300 focus:outline-none"
+        {/* Transformation Introduction */}
+        <FadeInSection>
+          <section className="max-w-5xl mx-auto py-14 px-6">
+            <HeadingWithLine>Innovative Strategies for Transformation</HeadingWithLine>
+            <div className="flex flex-col md:flex-row items-center md:items-start">
+              <img src={InnovationStrategies} alt="Innovation Strategies" className="w-40 h-40 object-cover rounded mb-6 md:mb-0 md:mr-6" />
+              <p className="text-gray-700">
+                We help you gain clarity, craft strategy, and take action...
+              </p>
+            </div>
+          </section>
+        </FadeInSection>
+
+        {/* Empowerment */}
+        <FadeInSection>
+          <section className="bg-gray-100 py-14 px-6 text-center">
+            <HeadingWithLine>Empowering Your Path to Excellence</HeadingWithLine>
+            <p className="text-gray-700 max-w-3xl mx-auto">
+              We meet you where you are and help you grow...
+            </p>
+          </section>
+        </FadeInSection>
+
+        {/* Excellence Pillars */}
+        <section id="programs" className="py-16 px-6 max-w-6xl mx-auto">
+          <HeadingWithLine>Our Excellence Pillars</HeadingWithLine>
+          <div className="grid md:grid-cols-3 gap-10">
+            {[PersonalExcellence, ProfessionalExcellence, BusinessExcellence].map((img, i) => {
+              const titles = ["Personal Excellence", "Professional Excellence", "Business Excellence"];
+              const descs = [
+                "Discover your true self...",
+                "Gain adaptability & purpose...",
+                "Grow your business with strategy..."
+              ];
+              return (
+                <FadeInSection key={i} delay={i * 0.2}>
+                  <div className="bg-white shadow rounded p-6 text-center hover:shadow-xl hover:scale-105 transition-transform duration-300 cursor-pointer">
+                    <img src={img} alt={titles[i]} className="h-40 mx-auto mb-4 object-cover rounded" />
+                    <h4 className="text-xl font-semibold text-black">{titles[i]}</h4>
+                    <p className="mt-2 text-gray-600">{descs[i]}</p>
+                  </div>
+                </FadeInSection>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Transformation Steps */}
+        <FadeInSection>
+          <section className="bg-gray-50 py-16 px-6 max-w-4xl mx-auto text-center">
+            <img src={HelpImage} alt="Help" className="mx-auto my-6 w-40 h-40 object-contain rounded-full shadow" />
+            <div className="space-y-6">
+              {[
+                "Our signature approach moves you from confusion to clarity.",
+                "💡 Changed Mindset",
+                "🔹 Identify the Problem",
+                "🔹 Identify Solutions",
+                "🔹 Take Action",
+                "🔹 Sustain Progress",
+                "🔹 Continuous Improvement"
+              ].map((text, i) => (
+                <p key={i} className="text-gray-700">{text}</p>
+              ))}
+            </div>
+          </section>
+        </FadeInSection>
+
+        {/* Coaching CTA */}
+        <FadeInSection>
+          <section className="py-16 px-6 bg-yellow-400 text-black text-center">
+            <HeadingWithLine>Unleash Your Potential</HeadingWithLine>
+            <p className="max-w-2xl mx-auto">
+              ✅ Clarity • ✅ Strategy • ✅ Support • ✅ Accountability • ✅ Excellence
+            </p>
+            <button className="mt-4 px-8 py-3 bg-black text-white font-bold rounded hover:bg-gray-900 transform transition duration-300 hover:scale-105">
+              Let’s Talk
+            </button>
+          </section>
+        </FadeInSection>
+
+        <FadeInSection>
+  <section id="blog" className="py-16 px-6 max-w-6xl mx-auto">
+    <HeadingWithLine>From the Blog</HeadingWithLine>
+    <div className="grid md:grid-cols-3 gap-8">
+      {[1, 2, 3].map((item) => (
+        <div
+          key={item}
+          className="bg-white shadow rounded overflow-hidden hover:shadow-lg transition duration-300"
+        >
+          <img
+            src={`https://source.unsplash.com/400x250/?growth,coaching,${item}`}
+            alt="Blog Post"
+            className="w-full h-48 object-cover"
           />
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="w-full p-3 rounded border border-gray-300 focus:outline-none"
-          />
-          <button type="submit" className="px-6 py-2 bg-black text-white font-bold rounded hover:bg-gray-800 transition">
-            Subscribe
-          </button>
-        </form>
-      </section>
+          <div className="p-4">
+            <h4 className="font-bold text-lg mb-2">Why Mindset Matters in Growth</h4>
+            <p className="text-gray-600 text-sm mb-3">
+              Discover how your mindset shapes your success — and how to shift it strategically.
+            </p>
+            <a href="#" className="text-yellow-500 font-semibold hover:underline">
+              Read More →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</FadeInSection>
+
+{/* Contact Form */}
+        <FadeInSection>
+          <section id="contact" className="py-16 px-6 max-w-3xl mx-auto">
+            <HeadingWithLine>Talk to Us</HeadingWithLine>
+            <form className="space-y-4">
+            <input
+  type="text"
+  placeholder="Full Name"
+  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+/>
+
+<input
+  type="email"
+  placeholder="Email Address"
+  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+/>
+
+<input
+  type="tel"
+  placeholder="Phone Number (Optional)"
+  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+/>
+
+<select
+  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+>
+  <option value="">What area do you need help with?</option>
+  <option>Personal Excellence</option>
+  <option>Professional Growth</option>
+  <option>Business Development</option>
+  <option>Mindset Coaching</option>
+  <option>Career Guidance</option>
+  <option>Custom Training/Consulting</option>
+  <option>Other</option>
+</select>
+
+<textarea
+  rows="4"
+  placeholder="Briefly describe your need or question"
+  className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
+/>
+
+              <label className="block">
+                <input type="checkbox" className="mr-2" /> I agree to the privacy policy and give permission to contact me.
+              </label>
+              <button type="submit" className="w-full bg-black text-white py-3 rounded font-bold hover:bg-gray-800">
+                Let’s Talk
+              </button>
+            </form>
+          </section>
+        </FadeInSection>
+      </div>
+
+      {/* Scroll to Top Button */}
+      {isScrolled && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 right-6 bg-yellow-400 text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300"
+        >
+          ↑ Top
+        </button>
+      )}
     </div>
   );
-};
+}
 
 export default ThinkTankLanding;
+// In this code, we have a React component for a landing page that includes a navigation bar, hero section, and various other sections. The component uses Tailwind CSS for styling and Framer Motion for animations. The page is responsive and includes a scroll-to-top button that appears when the user scrolls down. The loader component is displayed while the page is loading, and the main content is revealed after the loading is complete.
+// The page also includes a contact form and sections for different programs and services offered by the organization. The design is clean and modern, with a focus on user experience and engagement.
