@@ -1,22 +1,16 @@
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}", // Ensure this matches your file structure
+  ],
   theme: {
     extend: {
-      animation: {
-        fadeIn: "fadeIn 1s ease-in forwards",
-        fadeInUp: "fadeInUp 1s ease-in-out forwards",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-        fadeInUp: {
-          "0%": { opacity: 0, transform: "translateY(20px)" },
-          "100%": { opacity: 1, transform: "translateY(0)" },
-        },
+      colors: {
+        primary: '#EEC843', // Vibrant yellow
+        textPrimary: '#000000', // Black
+        textSecondary: '#ffffff', // White
+        customYellow: '#EEC843',
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 };
