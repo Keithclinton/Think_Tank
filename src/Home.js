@@ -5,7 +5,7 @@ import Loader from "./components/Loader";
 import ExcellencePillar from "./components/ExcellencePillar";
 import ServiceCard from "./components/ServiceCard";
 
-import Logo from "./assets/Logo.png";
+import Logo from "./assets/Logo.jpg";
 import thinkingman from "./assets/thinking man.png";
 import PersonalExcellence from "./assets/Personal Excellence.png";
 import ProfessionalExcellence from "./assets/Professional Excellence.png";
@@ -52,12 +52,14 @@ function ThinkTankLanding() {
                 <img
                   src={thinkingman}
                   alt="thinking Man"
-                  className="h-60 w-60 mb-6 md:mb-0 md:mr-6 shadow-lg"
+                  className="h-72 w-72 mb-6 md:mb-0 md:mr-6 shadow-lg" // Increased size
                 />
 
                 {/* Text Section */}
                 <div>
-                  <p className="mt-4 text-xl">“We believe every problem has a solution.”</p>
+                  <p className="mt-4 text-2xl font-bold"> {/* Increased font size and made bold */}
+                    “We believe every problem has a solution.”
+                  </p>
                   <p className="mt-4 text-lg max-w-2xl">
                     We’re dedicated to transforming challenges into opportunities...
                   </p>
@@ -381,6 +383,7 @@ function ThinkTankLanding() {
           </section>
         </FadeInSection>
 
+        {/* Social Links Section */}
         <FadeInSection>
           <section id="contact" className="py-20 px-6 bg-customYellow text-black text-center">
             <HeadingWithLine>Talk to Us</HeadingWithLine>
@@ -428,12 +431,18 @@ function ThinkTankLanding() {
             {/* Social Links */}
             <div className="mt-8 flex justify-center space-x-6">
               <a
-                href="https://www.linkedin.com/in/your-profile"
+                href="https://www.linkedin.com/in/njoki-njuguna-bb84ab115?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-gray-700"
               >
                 <i className="fab fa-linkedin text-2xl"></i> {/* LinkedIn Icon */}
+              </a>
+              <a
+                href="tel:+254722671084"
+                className="text-black hover:text-gray-700"
+              >
+                <i className="fas fa-phone text-2xl"></i> {/* Phone Icon */}
               </a>
               <a
                 href="mailto:transformationagenda2.0@gmail.com"
