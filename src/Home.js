@@ -6,11 +6,13 @@ import ExcellencePillar from "./components/ExcellencePillar";
 import ServiceCard from "./components/ServiceCard";
 
 import Logo from "./assets/Logo.jpg";
-import thinkingman from "./assets/thinking man.png";
+import webelieve from "./assets/we believe.png";
 import PersonalExcellence from "./assets/Personal Excellence.png";
 import ProfessionalExcellence from "./assets/Professional Excellence.png";
 import BusinessExcellence from "./assets/Business Exellence.png";
 import HelpImage from "./assets/Help.png";
+import Empowering from "./assets/Empowering.png";
+import Founder from "./assets/Founder.png";
 import InnovationStrategies from "./assets/Innovation Strategies.png";
 
 function ThinkTankLanding() {
@@ -50,8 +52,8 @@ function ThinkTankLanding() {
               <div className="flex flex-col md:flex-row items-center md:items-start md:text-left justify-center mx-auto">
                 {/* Image Section */}
                 <img
-                  src={thinkingman}
-                  alt="thinking Man"
+                  src={webelieve}
+                  alt="we believe"
                   className="h-72 w-72 mb-6 md:mb-0 md:mr-6 shadow-lg" // Increased size
                 />
 
@@ -75,6 +77,50 @@ function ThinkTankLanding() {
           <section id="about" className="py-20 px-6 bg-gray-100 text-center">
             <HeadingWithLine>About Us</HeadingWithLine>
             <div className="max-w-5xl mx-auto text-left mt-8 space-y-8">
+              {/* Introduction */}
+              <div>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  At <span className="font-bold text-black">Think Tank Solutions Oriented</span>, we believe every problem has a solution.
+                  In life, challenges are inevitable, whether personal, professional, or business-related. What truly makes the difference is how prepared and proactive we are in addressing them.
+                  Our mission is to bridge the gap between where you are and where you want to go because that gap is often filled with what you don’t yet know.
+                </p>
+                <p className="text-gray-700 text-lg leading-relaxed mt-4">
+                  We exist to help you uncover that knowledge, develop the right skills, and apply practical tools, roadmaps, and proven frameworks that lead to real results.
+                </p>
+              </div>
+
+              {/* Who We Are */}
+              <div>
+                <h3 className="text-xl font-bold text-black">Who We Are</h3>
+                <p className="text-gray-700 mt-2 leading-relaxed">
+                  We are a multidisciplinary team of transformation experts—consultants, trainers, coaches, and mentors—committed to helping individuals and organizations unlock their potential and thrive.
+                  We don’t offer one-size-fits-all solutions; instead, we take the time to understand your unique challenges and goals so we can guide you toward lasting change.
+                </p>
+              </div>
+
+              {/* What’s In It For You */}
+              <div>
+                <h3 className="text-xl font-bold text-black">What’s In It For You?</h3>
+                <p className="text-gray-700 mt-2 leading-relaxed">
+                  Whether you’re a young professional seeking direction, a business leader navigating change, or someone pursuing personal transformation—we equip you with:
+                </p>
+                <ul className="list-disc list-inside text-gray-700 mt-4 space-y-2">
+                  <li>Knowledge to make informed decisions</li>
+                  <li>Tools and templates to implement change</li>
+                  <li>Best practices and principles to guide your journey</li>
+                  <li>Roadmaps and frameworks to create a clear path forward</li>
+                  <li>Support systems to sustain and continuously improve</li>
+                </ul>
+              </div>
+
+              {/* Why Choose Us */}
+              <div>
+                <h3 className="text-xl font-bold text-black">Why Choose Us?</h3>
+                <p className="text-gray-700 mt-2 leading-relaxed">
+                  Because we don’t just give you answers, we empower you to become your own solution. We’re here to help you move with clarity, operate with purpose, and rise with excellence in every area of your life and work.
+                </p>
+              </div>
+
               {/* Vision */}
               <div>
                 <h3 className="text-xl font-bold text-black">Our Vision</h3>
@@ -219,6 +265,12 @@ function ThinkTankLanding() {
               Whether you're looking to grow personally, excel professionally, or scale your business,
               our team walks with you every step of the way with custom strategies, coaching, and clarity.
             </p>
+            {/* Empowering Image */}
+            <img
+              src={Empowering} // Replace with the actual image path if different
+              alt="Empowering"
+              className="w-60 h-60 object-cover rounded-lg shadow-lg mx-auto mt-6"
+            />
           </section>
         </FadeInSection>
 
@@ -360,7 +412,9 @@ function ThinkTankLanding() {
             </div>
           </section>
         </FadeInSection>
-      <FadeInSection>
+
+        {/* Testimonials Section */}
+        <FadeInSection>
           <section id="testimonials" className="py-20 px-6 bg-gray-100 text-center">
             <HeadingWithLine>What Our Clients Say</HeadingWithLine>
             <div className="max-w-4xl mx-auto mt-8 space-y-8">
@@ -383,7 +437,39 @@ function ThinkTankLanding() {
           </section>
         </FadeInSection>
 
-        {/* Social Links Section */}
+        {/* Knowledge Bridge Section */}
+        <FadeInSection>
+          <section className="py-16 px-6 bg-gray-50 text-center">
+            {/* Founder Image */}
+            <img
+              src={Founder} // Ensure the correct path to Founder.png is used
+              alt="Founder"
+              className="w-40 h-40 object-cover rounded-full mx-auto shadow-lg mb-6"
+            />
+
+            {/* Text Content */}
+            <p className="text-xl font-bold text-black">
+              "The gap between where you are and where you want to go is what you don’t know."
+            </p>
+            <p className="text-lg text-gray-700 mt-2 italic">--- J. Njoki Njuguna ---</p>
+            <p className="text-lg text-gray-700 mt-4">
+              Founder <span className="font-bold text-black">Think Tank Solutions Oriented</span>
+            </p>
+            <div className="mt-6">
+              <p className="text-lg text-gray-700">
+                <span className="font-bold text-black">Knowledge</span> is the bridge.
+              </p>
+              <p className="text-lg text-gray-700">
+                <span className="font-bold text-black">Growth</span> is the journey.
+              </p>
+            </div>
+            <p className="text-lg text-gray-700 mt-6">
+              💡 Let us help you close the gap intentionally, strategically, and sustainably.
+            </p>
+          </section>
+        </FadeInSection>
+
+        {/* Talk to Us Section */}
         <FadeInSection>
           <section id="contact" className="py-20 px-6 bg-customYellow text-black text-center">
             <HeadingWithLine>Talk to Us</HeadingWithLine>
@@ -429,26 +515,29 @@ function ThinkTankLanding() {
             </form>
 
             {/* Social Links */}
-            <div className="mt-8 flex justify-center space-x-6">
+            <div className="mt-8 flex flex-col items-center space-y-4">
               <a
                 href="https://www.linkedin.com/in/njoki-njuguna-bb84ab115?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black hover:text-gray-700"
+                className="flex items-center space-x-3 text-black hover:text-gray-700"
               >
                 <i className="fab fa-linkedin text-2xl"></i> {/* LinkedIn Icon */}
+                <span>Njoki Njuguna</span>
               </a>
               <a
                 href="tel:+254722671084"
-                className="text-black hover:text-gray-700"
+                className="flex items-center space-x-3 text-black hover:text-gray-700"
               >
                 <i className="fas fa-phone text-2xl"></i> {/* Phone Icon */}
+                <span>+254 722 671 084</span>
               </a>
               <a
                 href="mailto:transformationagenda2.0@gmail.com"
-                className="text-black hover:text-gray-700"
+                className="flex items-center space-x-3 text-black hover:text-gray-700"
               >
                 <i className="fas fa-envelope text-2xl"></i> {/* Email Icon */}
+                <span>transformationagenda2.0@gmail.com</span>
               </a>
             </div>
           </section>
