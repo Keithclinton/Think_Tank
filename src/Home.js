@@ -579,6 +579,36 @@ const ThinkTankLanding = () => {
       </button>
 
     </form>
+
+    {/* Additional Resources */}
+    <div className="mt-12">
+      <HeadingWithLine>Explore More Resources</HeadingWithLine>
+      <p className="text-lg mt-4">
+        Check out our recommended resources to enhance your journey:
+      </p>
+      <ul className="mt-6 space-y-4">
+        <li>
+          <a
+            href="https://www.udemy.com/course/introduction-to-self-awareness/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            🌟 Udemy Course: Introduction to Self-Awareness
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://gracetruthandlovepodcast.buzzsprout.com/2458998/episodes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            🎙️ Grace, Truth, and Love Podcast
+          </a>
+        </li>
+      </ul>
+    </div>
   </section>
 </FadeInSection>
 
