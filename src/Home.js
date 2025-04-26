@@ -4,7 +4,8 @@ import HeadingWithLine from "./components/HeadingWithLine";
 import Loader from "./components/Loader";
 import ExcellencePillar from "./components/ExcellencePillar";
 import ServiceCard from "./components/ServiceCard";
-
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import Logo from "./assets/Logo.jpg";
 import webelieve from "./assets/we believe.png";
 import PersonalExcellence from "./assets/Personal Excellence.png";
@@ -15,11 +16,36 @@ import Empowering from "./assets/Empowering.png";
 import Founder from "./assets/Founder.png";
 import InnovationStrategies from "./assets/Innovation Strategies.png";
 
-function ThinkTankLanding() {
+const ThinkTankLanding = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const formRef = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_unfjz0q", // Your EmailJS service ID
+        "template_5qsnvue", // Your EmailJS template ID
+        formRef.current,
+        "el2Z4Cg9l44ryqKlK" // Your EmailJS public key
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.text);
+          alert("Your message has been sent!");
+          formRef.current.reset(); // Clear the form
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          alert("Failed to send message. Please try again.");
+        }
+      );
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,128 +66,133 @@ function ThinkTankLanding() {
   if (loading) return <Loader />;
 
   return (
-    <>
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        rel="stylesheet"
-      />
-      <div className="bg-white text-black font-sans">
-        <div className="pt-32">
-          <FadeInSection>
-            <section className="text-center py-16 bg-[#EEC843] text-black px-4 relative">
-              <div className="flex flex-col md:flex-row items-center md:items-start md:text-left justify-center mx-auto">
-                {/* Image Section */}
-                <img
-                  src={webelieve}
-                  alt="we believe"
-                  className="h-72 w-72 mb-6 md:mb-0 md:mr-6 shadow-lg" // Increased size
-                />
-
-                {/* Text Section */}
-                <div>
-                  <p className="mt-4 text-2xl font-bold"> {/* Increased font size and made bold */}
-                    “We believe every problem has a solution.”
-                  </p>
-                  <p className="mt-4 text-lg max-w-2xl">
-                    We’re dedicated to transforming challenges into opportunities...
-                  </p>
-                  <p className="mt-4 text-black font-semibold">🎯 That’s where we come in.</p>
-                </div>
-              </div>
-            </section>
-          </FadeInSection>
+    <div>
+          <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            rel="stylesheet"
+          />
+        <div>
+                  <div className="bg-white text-black font-sans">
+                    <div className="pt-32">
+                      <FadeInSection>
+                        <section className="text-center py-16 bg-[#EEC843] text-black px-4 relative">
+                          <div className="flex flex-col md:flex-row items-center md:items-start md:text-left justify-center mx-auto">
+                            {/* Image Section */}
+                            <img
+                              src={webelieve}
+                              alt="we believe"
+                              className="h-72 w-72 mb-6 md:mb-0 md:mr-6 shadow-lg" // Increased size
+                            />
+            
+                            {/* Text Section */}
+                            <div>
+                              <p className="mt-4 text-2xl font-bold"> {/* Increased font size and made bold */}
+                                “We believe every problem has a solution.”
+                              </p>
+                              <p className="mt-4 text-lg max-w-2xl">
+                                We’re dedicated to transforming challenges into opportunities...
+                              </p>
+                              <p className="mt-4 text-black font-semibold">🎯 That’s where we come in.</p>
+                            </div>
+                          </div>
+                        </section>
+                      </FadeInSection>
+                    </div>
+                  </div>
         </div>
-
-        {/* About Us Section */}
-        <FadeInSection>
-          <section id="about" className="py-20 px-6 bg-gray-100 text-center">
-            <HeadingWithLine>About Us</HeadingWithLine>
-            <div className="max-w-5xl mx-auto text-left mt-8 space-y-8">
-              {/* Introduction */}
-              <div>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  At <span className="font-bold text-black">Think Tank Solutions Oriented</span>, we believe every problem has a solution.
-                  In life, challenges are inevitable, whether personal, professional, or business-related. What truly makes the difference is how prepared and proactive we are in addressing them.
-                  Our mission is to bridge the gap between where you are and where you want to go because that gap is often filled with what you don’t yet know.
-                </p>
-                <p className="text-gray-700 text-lg leading-relaxed mt-4">
-                  We exist to help you uncover that knowledge, develop the right skills, and apply practical tools, roadmaps, and proven frameworks that lead to real results.
-                </p>
-              </div>
-
-              {/* Who We Are */}
-              <div>
-                <h3 className="text-xl font-bold text-black">Who We Are</h3>
-                <p className="text-gray-700 mt-2 leading-relaxed">
-                  We are a multidisciplinary team of transformation experts—consultants, trainers, coaches, and mentors—committed to helping individuals and organizations unlock their potential and thrive.
-                  We don’t offer one-size-fits-all solutions; instead, we take the time to understand your unique challenges and goals so we can guide you toward lasting change.
-                </p>
-              </div>
-
-              {/* What’s In It For You */}
-              <div>
-                <h3 className="text-xl font-bold text-black">What’s In It For You?</h3>
-                <p className="text-gray-700 mt-2 leading-relaxed">
-                  Whether you’re a young professional seeking direction, a business leader navigating change, or someone pursuing personal transformation—we equip you with:
-                </p>
-                <ul className="list-disc list-inside text-gray-700 mt-4 space-y-2">
-                  <li>Knowledge to make informed decisions</li>
-                  <li>Tools and templates to implement change</li>
-                  <li>Best practices and principles to guide your journey</li>
-                  <li>Roadmaps and frameworks to create a clear path forward</li>
-                  <li>Support systems to sustain and continuously improve</li>
-                </ul>
-              </div>
-
-              {/* Why Choose Us */}
-              <div>
-                <h3 className="text-xl font-bold text-black">Why Choose Us?</h3>
-                <p className="text-gray-700 mt-2 leading-relaxed">
-                  Because we don’t just give you answers, we empower you to become your own solution. We’re here to help you move with clarity, operate with purpose, and rise with excellence in every area of your life and work.
-                </p>
-              </div>
-
-              {/* Vision */}
-              <div>
-                <h3 className="text-xl font-bold text-black">Our Vision</h3>
-                <p className="text-gray-700 mt-2">
-                  To create a world where individuals and businesses thrive through effective solutions and continuous improvement.
-                </p>
-              </div>
-
-              {/* Mission */}
-              <div>
-                <h3 className="text-xl font-bold text-black">Our Mission</h3>
-                <p className="text-gray-700 mt-2">
-                  To inspire transformation by helping people and businesses understand their challenges, reimagine possibilities, and achieve meaningful success.
-                </p>
-              </div>
-
-              {/* Intention */}
-              <div>
-                <h3 className="text-xl font-bold text-black">Our Intention</h3>
-                <p className="text-gray-700 mt-2">
-                  To cultivate a mentality for extraordinary results.
-                </p>
-              </div>
-
-              {/* Values */}
-              <div>
-                <h3 className="text-xl font-bold text-black">Our Values</h3>
-                <ul className="list-disc list-inside text-gray-700 mt-2 space-y-2">
-                  <li>Integrity</li>
-                  <li>Collaboration</li>
-                  <li>Empowerment and Holistic Development</li>
-                  <li>Excellence</li>
-                  <li>Continuous Improvement</li>
-                  <li>Client-Centricity</li>
-                  <li>Innovation</li>
-                  <li>Accountability</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-        </FadeInSection>
+        
+                <div>
+                {/* About Us Section */}
+                <FadeInSection>
+                  <section id="about" className="py-20 px-6 bg-gray-100 text-center">
+                    <HeadingWithLine>About Us</HeadingWithLine>
+                    <div className="max-w-5xl mx-auto text-left mt-8 space-y-8">
+                      {/* Introduction */}
+                      <div>
+                        <p className="text-gray-700 text-lg leading-relaxed">
+                          At <span className="font-bold text-black">Think Tank Solutions Oriented</span>, we believe every problem has a solution.
+                          In life, challenges are inevitable, whether personal, professional, or business-related. What truly makes the difference is how prepared and proactive we are in addressing them.
+                          Our mission is to bridge the gap between where you are and where you want to go because that gap is often filled with what you don’t yet know.
+                        </p>
+                        <p className="text-gray-700 text-lg leading-relaxed mt-4">
+                          We exist to help you uncover that knowledge, develop the right skills, and apply practical tools, roadmaps, and proven frameworks that lead to real results.
+                        </p>
+                      </div>
+        
+                      {/* Who We Are */}
+                      <div>
+                        <h3 className="text-xl font-bold text-black">Who We Are</h3>
+                        <p className="text-gray-700 mt-2 leading-relaxed">
+                          We are a multidisciplinary team of transformation experts—consultants, trainers, coaches, and mentors—committed to helping individuals and organizations unlock their potential and thrive.
+                          We don’t offer one-size-fits-all solutions; instead, we take the time to understand your unique challenges and goals so we can guide you toward lasting change.
+                        </p>
+                      </div>
+        
+                      {/* What’s In It For You */}
+                      <div>
+                        <h3 className="text-xl font-bold text-black">What’s In It For You?</h3>
+                        <p className="text-gray-700 mt-2 leading-relaxed">
+                          Whether you’re a young professional seeking direction, a business leader navigating change, or someone pursuing personal transformation—we equip you with:
+                        </p>
+                        <ul className="list-disc list-inside text-gray-700 mt-4 space-y-2">
+                          <li>Knowledge to make informed decisions</li>
+                          <li>Tools and templates to implement change</li>
+                          <li>Best practices and principles to guide your journey</li>
+                          <li>Roadmaps and frameworks to create a clear path forward</li>
+                          <li>Support systems to sustain and continuously improve</li>
+                        </ul>
+                      </div>
+        
+                      {/* Why Choose Us */}
+                      <div>
+                        <h3 className="text-xl font-bold text-black">Why Choose Us?</h3>
+                        <p className="text-gray-700 mt-2 leading-relaxed">
+                          Because we don’t just give you answers, we empower you to become your own solution. We’re here to help you move with clarity, operate with purpose, and rise with excellence in every area of your life and work.
+                        </p>
+                      </div>
+        
+                      {/* Vision */}
+                      <div>
+                        <h3 className="text-xl font-bold text-black">Our Vision</h3>
+                        <p className="text-gray-700 mt-2">
+                          To create a world where individuals and businesses thrive through effective solutions and continuous improvement.
+                        </p>
+                      </div>
+        
+                      {/* Mission */}
+                      <div>
+                        <h3 className="text-xl font-bold text-black">Our Mission</h3>
+                        <p className="text-gray-700 mt-2">
+                          To inspire transformation by helping people and businesses understand their challenges, reimagine possibilities, and achieve meaningful success.
+                        </p>
+                      </div>
+        
+                      {/* Intention */}
+                      <div>
+                        <h3 className="text-xl font-bold text-black">Our Intention</h3>
+                        <p className="text-gray-700 mt-2">
+                          To cultivate a mentality for extraordinary results.
+                        </p>
+                      </div>
+        
+                      {/* Values */}
+                      <div>
+                        <h3 className="text-xl font-bold text-black">Our Values</h3>
+                        <ul className="list-disc list-inside text-gray-700 mt-2 space-y-2">
+                          <li>Integrity</li>
+                          <li>Collaboration</li>
+                          <li>Empowerment and Holistic Development</li>
+                          <li>Excellence</li>
+                          <li>Continuous Improvement</li>
+                          <li>Client-Centricity</li>
+                          <li>Innovation</li>
+                          <li>Accountability</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </section>
+                </FadeInSection>
+        </div>
 
         {/* Navbar */}
         <nav className="fixed top-0 left-0 right-0 z-50 px-6 transition-all duration-300 bg-[#EEC843] shadow-md">
@@ -186,9 +217,8 @@ function ThinkTankLanding() {
               <li><a href="#testimonials" className="hover:text-gray-700">Testimonials</a></li>
               <li><a href="#contact" className="hover:text-gray-700">Contact</a></li>
             </ul>
-          </div>
-
-          {/* Hamburger Menu for Mobile */}
+            </div>
+            {/* Hamburger Menu for Mobile */}
           <div className="md:hidden flex justify-end">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -227,101 +257,95 @@ function ThinkTankLanding() {
 
         {/* Innovative Strategies Section */}
         <FadeInSection>
-          <section className="max-w-5xl mx-auto py-14 px-6">
-            <HeadingWithLine>Innovative Strategies for Transformation</HeadingWithLine>
-            <div className="flex flex-col md:flex-row items-center md:items-start">
-              <img
-                src={InnovationStrategies}
-                alt="Innovation Strategies"
-                className="w-40 h-40 object-cover rounded mb-6 md:mb-0 md:mr-6"
-              />
-              <div className="text-gray-700">
-                <p>
-                  We help you gain clarity, craft strategy, and take action to achieve your goals.
-                </p>
-                {isExpanded && (
-                  <p className="mt-4">
-                    No challenge is without an answer. The bigger question is:
-                    “What should you do, and how should you do it?” 🎯 That’s where we come in.
-                    We help you gain clarity, craft strategy, and take action—so you can move from
-                    confusion to confidence, from challenge to change.
-                  </p>
-                )}
-                <button
-                  className="mt-4 text-yellow-500 font-semibold hover:underline"
-                  onClick={() => setIsExpanded(!isExpanded)}
-                >
-                  {isExpanded ? "Read Less" : "Read More"}
-                </button>
+    <section className="max-w-5xl mx-auto py-14 px-6">
+      <HeadingWithLine>Innovative Strategies for Transformation</HeadingWithLine>
+      <div className="flex flex-col md:flex-row items-center md:items-start">
+        <img
+          src={InnovationStrategies}
+          alt="Innovation Strategies"
+          className="w-40 h-40 object-cover rounded mb-6 md:mb-0 md:mr-6" />
+        <div className="text-gray-700">
+          <p>
+            We help you gain clarity, craft strategy, and take action to achieve your goals.
+          </p>
+          {isExpanded && (
+            <p className="mt-4">
+              No challenge is without an answer. The bigger question is:
+              “What should you do, and how should you do it?” 🎯 That’s where we come in.
+              We help you gain clarity, craft strategy, and take action—so you can move from
+              confusion to confidence, from challenge to change.
+            </p>
+          )}
+          <button
+            className="mt-4 text-yellow-500 font-semibold hover:underline"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            {isExpanded ? "Read Less" : "Read More"}
+          </button>
+        </div>
+      </div>
+    </section>
+  </FadeInSection><FadeInSection>
+      <section className="py-20 px-6 bg-gray-100 text-center">
+        <HeadingWithLine>Empowering Your Journey</HeadingWithLine>
+        <p className="max-w-3xl mx-auto text-lg text-gray-700">
+          Whether you're looking to grow personally, excel professionally, or scale your business,
+          our team walks with you every step of the way with custom strategies, coaching, and clarity.
+        </p>
+        {/* Empowering Image */}
+        <img
+          src={Empowering} // Replace with the actual image path if different
+          alt="Empowering"
+          className="w-60 h-60 object-cover rounded-lg shadow-lg mx-auto mt-6" />
+      </section>
+    </FadeInSection><FadeInSection>
+      <section className="py-20 px-6 bg-gray-100 text-center">
+        <HeadingWithLine>Unleash Your Potential and Achieve Results</HeadingWithLine>
+        <p className="max-w-3xl mx-auto text-lg text-gray-700 mt-4">
+          We believe that everyone, every business has untapped capacity within them. Sometimes, all it takes is the right questions, the right tools, and the right environment to bring it to life. That’s where our team steps in—bringing:
+        </p>
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {[
+            {
+              icon: "✅",
+              title: "Clarity",
+              description: "Helping you define where you’re going and why it matters.",
+            },
+            {
+              icon: "✅",
+              title: "Strategy",
+              description: "Guiding you with proven tools and frameworks customized to your context.",
+            },
+            {
+              icon: "✅",
+              title: "Support",
+              description: "Walking with you through challenges, decisions, and transitions.",
+            },
+            {
+              icon: "✅",
+              title: "Accountability",
+              description: "Ensuring you stay on track and aligned with your purpose.",
+            },
+            {
+              icon: "✅",
+              title: "Excellence",
+              description: "Helping you not just meet your goals, but grow beyond them.",
+            },
+          ].map((item, index) => (
+            <div key={index} className="bg-white shadow rounded p-6 text-left hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center space-x-4">
+                <span className="text-3xl">{item.icon}</span>
+                <h4 className="text-xl font-semibold text-black">{item.title}</h4>
               </div>
+              <p className="mt-2 text-gray-600">{item.description}</p>
             </div>
-          </section>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section className="py-20 px-6 bg-gray-100 text-center">
-            <HeadingWithLine>Empowering Your Journey</HeadingWithLine>
-            <p className="max-w-3xl mx-auto text-lg text-gray-700">
-              Whether you're looking to grow personally, excel professionally, or scale your business,
-              our team walks with you every step of the way with custom strategies, coaching, and clarity.
-            </p>
-            {/* Empowering Image */}
-            <img
-              src={Empowering} // Replace with the actual image path if different
-              alt="Empowering"
-              className="w-60 h-60 object-cover rounded-lg shadow-lg mx-auto mt-6"
-            />
-          </section>
-        </FadeInSection>
-
-        <FadeInSection>
-          <section className="py-20 px-6 bg-gray-100 text-center">
-            <HeadingWithLine>Unleash Your Potential and Achieve Results</HeadingWithLine>
-            <p className="max-w-3xl mx-auto text-lg text-gray-700 mt-4">
-              We believe that everyone, every business has untapped capacity within them. Sometimes, all it takes is the right questions, the right tools, and the right environment to bring it to life. That’s where our team steps in—bringing:
-            </p>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                {
-                  icon: "✅",
-                  title: "Clarity",
-                  description: "Helping you define where you’re going and why it matters.",
-                },
-                {
-                  icon: "✅",
-                  title: "Strategy",
-                  description: "Guiding you with proven tools and frameworks customized to your context.",
-                },
-                {
-                  icon: "✅",
-                  title: "Support",
-                  description: "Walking with you through challenges, decisions, and transitions.",
-                },
-                {
-                  icon: "✅",
-                  title: "Accountability",
-                  description: "Ensuring you stay on track and aligned with your purpose.",
-                },
-                {
-                  icon: "✅",
-                  title: "Excellence",
-                  description: "Helping you not just meet your goals, but grow beyond them.",
-                },
-              ].map((item, index) => (
-                <div key={index} className="bg-white shadow rounded p-6 text-left hover:shadow-lg transition-shadow duration-300">
-                  <div className="flex items-center space-x-4">
-                    <span className="text-3xl">{item.icon}</span>
-                    <h4 className="text-xl font-semibold text-black">{item.title}</h4>
-                  </div>
-                  <p className="mt-2 text-gray-600">{item.description}</p>
-                </div>
-              ))}
-            </div>
-            <p className="max-w-3xl mx-auto text-lg text-gray-700 mt-8">
-              We don’t just consult, coach, or train—we partner with you to build momentum and deliver sustainable transformation.
-            </p>
-          </section>
-        </FadeInSection>
+          ))}
+        </div>
+        <p className="max-w-3xl mx-auto text-lg text-gray-700 mt-8">
+          We don’t just consult, coach, or train—we partner with you to build momentum and deliver sustainable transformation.
+        </p>
+      </section>
+    </FadeInSection>
 
         {/* Excellence Pillars Section */}
         <FadeInSection>
@@ -471,95 +495,136 @@ function ThinkTankLanding() {
 
         {/* Talk to Us Section */}
         <FadeInSection>
-          <section id="contact" className="py-20 px-6 bg-customYellow text-black text-center">
-            <HeadingWithLine>Talk to Us</HeadingWithLine>
-            <p className="max-w-xl mx-auto text-lg">
-              We’re here to listen, support, and walk with you. Whether you’re seeking clarity, exploring our services, or ready to take action—this is your starting point.
-            </p>
-            <form className="mt-8 max-w-2xl mx-auto text-left">
-              <label className="block mb-4">
-                <span className="text-black font-bold">Full Name:</span>
-                <input type="text" className="w-full mt-2 p-3 border rounded" placeholder="Enter your full name" />
-              </label>
-              <label className="block mb-4">
-                <span className="text-black font-bold">Email Address:</span>
-                <input type="email" className="w-full mt-2 p-3 border rounded" placeholder="Enter your email address" />
-              </label>
-              <label className="block mb-4">
-                <span className="text-black font-bold">Phone Number (Optional):</span>
-                <input type="text" className="w-full mt-2 p-3 border rounded" placeholder="Enter your phone number" />
-              </label>
-              <label className="block mb-4">
-                <span className="text-black font-bold">What area do you need help with?</span>
-                <select className="w-full mt-2 p-3 border rounded">
-                  <option>Personal Excellence</option>
-                  <option>Professional Growth</option>
-                  <option>Business Development</option>
-                  <option>Mindset Coaching</option>
-                  <option>Career Guidance</option>
-                  <option>Custom Training/Consulting</option>
-                  <option>Other (please specify)</option>
-                </select>
-              </label>
-              <label className="block mb-4">
-                <span className="text-black font-bold">Briefly describe your need or question:</span>
-                <textarea className="w-full mt-2 p-3 border rounded" rows="4" placeholder="Tell us what you’re hoping to solve, explore, or achieve."></textarea>
-              </label>
-              <label className="block mb-4">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-black">I agree to the privacy policy and give Think Tank Solutions Oriented permission to contact me using the information provided.</span>
-              </label>
-              <button type="submit" className="mt-4 px-10 py-4 bg-black text-white font-bold rounded hover:bg-gray-900 transform transition hover:scale-105">
-                Let’s Talk
-              </button>
-            </form>
+  <section id="contact" className="py-20 px-6 bg-customYellow text-black text-center">
+    <HeadingWithLine>Talk to Us</HeadingWithLine>
+    <p className="max-w-xl mx-auto text-lg">
+      We’re here to listen, support, and walk with you. Whether you’re seeking clarity, exploring our services, or ready to take action—this is your starting point.
+    </p>
+    <form ref={formRef} onSubmit={sendEmail} className="mt-8 max-w-2xl mx-auto text-left">
+      
+      <label className="block mb-4">
+        <span className="text-black font-bold">Full Name:</span>
+        <input 
+          type="text" 
+          name="name"
+          className="w-full mt-2 p-3 border rounded" 
+          placeholder="Enter your full name" 
+          required
+        />
+      </label>
 
-            {/* Social Links */}
-            <div className="mt-8 flex flex-col items-center space-y-4">
-              <a
-                href="https://www.linkedin.com/in/njoki-njuguna-bb84ab115?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-3 text-black hover:text-gray-700"
-              >
-                <i className="fab fa-linkedin text-2xl"></i> {/* LinkedIn Icon */}
-                <span>Njoki Njuguna</span>
-              </a>
-              <a
-                href="tel:+254722671084"
-                className="flex items-center space-x-3 text-black hover:text-gray-700"
-              >
-                <i className="fas fa-phone text-2xl"></i> {/* Phone Icon */}
-                <span>+254 722 671 084</span>
-              </a>
-              <a
-                href="mailto:transformationagenda2.0@gmail.com"
-                className="flex items-center space-x-3 text-black hover:text-gray-700"
-              >
-                <i className="fas fa-envelope text-2xl"></i> {/* Email Icon */}
-                <span>transformationagenda2.0@gmail.com</span>
-              </a>
-            </div>
-          </section>
-        </FadeInSection>
+      <label className="block mb-4">
+        <span className="text-black font-bold">Email Address:</span>
+        <input 
+          type="email" 
+          name="email"
+          className="w-full mt-2 p-3 border rounded" 
+          placeholder="Enter your email address" 
+          required
+        />
+      </label>
 
-        <footer className="bg-gray-800 text-white py-6 text-center">
-          <p className="text-sm">© 2025 Think Tank Solutions Oriented. All rights reserved.</p>
-          <p className="text-sm">Privacy Policy | Terms of Service</p>
-        </footer>
-      </div>
+      <label className="block mb-4">
+        <span className="text-black font-bold">Phone Number (Optional):</span>
+        <input 
+          type="text" 
+          name="phone"
+          className="w-full mt-2 p-3 border rounded" 
+          placeholder="Enter your phone number" 
+        />
+      </label>
 
-      {/* Scroll to Top Button */}
-      {isScrolled && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 bg-[#EEC843] text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300"
+      <label className="block mb-4">
+        <span className="text-black font-bold">What area do you need help with?</span>
+        <select 
+          name="help_area"
+          className="w-full mt-2 p-3 border rounded"
+          required
         >
-          ↑ Top
-        </button>
-      )}
-    </>
-  );
-}
+          <option value="Personal Excellence">Personal Excellence</option>
+          <option value="Professional Growth">Professional Growth</option>
+          <option value="Business Development">Business Development</option>
+          <option value="Mindset Coaching">Mindset Coaching</option>
+          <option value="Career Guidance">Career Guidance</option>
+          <option value="Custom Training/Consulting">Custom Training/Consulting</option>
+          <option value="Other">Other (please specify)</option>
+        </select>
+      </label>
 
+      <label className="block mb-4">
+        <span className="text-black font-bold">Briefly describe your need or question:</span>
+        <textarea 
+          name="message"
+          className="w-full mt-2 p-3 border rounded" 
+          rows="4" 
+          placeholder="Tell us what you’re hoping to solve, explore, or achieve."
+          required
+        ></textarea>
+      </label>
+
+      <label className="block mb-4">
+        <input 
+          type="checkbox" 
+          className="mr-2" 
+          required
+        />
+        <span className="text-black">I agree to the privacy policy and give Think Tank Solutions Oriented permission to contact me using the information provided.</span>
+      </label>
+
+      <button 
+        type="submit" 
+        className="mt-4 px-10 py-4 bg-black text-white font-bold rounded hover:bg-gray-900 transform transition hover:scale-105"
+      >
+        Let’s Talk
+      </button>
+
+    </form>
+  </section>
+</FadeInSection>
+
+{/* Social Links */}
+<div className="mt-8 flex flex-col items-center space-y-4">
+  <a
+    href="https://www.linkedin.com/in/njoki-njuguna-bb84ab115?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center space-x-3 text-black hover:text-gray-700"
+  >
+    <i className="fab fa-linkedin text-2xl"></i> {/* LinkedIn Icon */}
+    <span>Njoki Njuguna</span>
+  </a>
+  <a
+    href="tel:+254722671084"
+    className="flex items-center space-x-3 text-black hover:text-gray-700"
+  >
+    <i className="fas fa-phone text-2xl"></i> {/* Phone Icon */}
+    <span>+254 722 671 084</span>
+  </a>
+  <a
+    href="mailto:transformationagenda2.0@gmail.com"
+    className="flex items-center space-x-3 text-black hover:text-gray-700"
+  >
+    <i className="fas fa-envelope text-2xl"></i> {/* Email Icon */}
+    <span>transformationagenda2.0@gmail.com</span>
+  </a>
+</div>
+
+<footer className="bg-gray-800 text-white py-6 text-center">
+  <p className="text-sm">© 2025 Think Tank Solutions Oriented. All rights reserved.</p>
+  <p className="text-sm">Privacy Policy | Terms of Service</p>
+</footer>
+<div>
+{/* Scroll to Top Button */}
+{isScrolled && (
+  <button
+    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    className="fixed bottom-6 right-6 bg-[#EEC843] text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300"
+  >
+    ↑ Top
+  </button>
+)}
+        </div>
+</div>
+);
+}
 export default ThinkTankLanding;
