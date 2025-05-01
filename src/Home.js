@@ -7,7 +7,7 @@ import ServiceCard from "./components/ServiceCard";
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import Logo from "./assets/Logo.jpg";
-import webelieve from "./assets/we believe.png";
+import Solution from "./assets/Solution.jpg";
 import PersonalExcellence from "./assets/Personal Excellence.png";
 import ProfessionalExcellence from "./assets/Professional Excellence.png";
 import BusinessExcellence from "./assets/Business Exellence.png";
@@ -15,12 +15,18 @@ import HelpImage from "./assets/Help.png";
 import Empowering from "./assets/Empowering.png";
 import Founder from "./assets/Founder.png";
 import InnovationStrategies from "./assets/Innovation Strategies.png";
+import WeBelieve from "./assets/we believe.png";
+import SelfAwareness from "./assets/Self Awareness.png";
+import BoyProgram from "./assets/Boy Program.png";
+import CustomerService from "./assets/Customer Service.png";
+import Trial from "./assets/Trial.png"; // Import the trial.png image
 
 const ThinkTankLanding = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [expandedSections, setExpandedSections] = useState({});
 
   const formRef = useRef();
 
@@ -45,6 +51,13 @@ const ThinkTankLanding = () => {
           alert("Failed to send message. Please try again.");
         }
       );
+  };
+
+  const toggleSection = (sectionKey) => {
+    setExpandedSections((prevState) => ({
+      ...prevState,
+      [sectionKey]: !prevState[sectionKey], // Toggle the specific section
+    }));
   };
 
   useEffect(() => {
@@ -75,25 +88,26 @@ const ThinkTankLanding = () => {
                   <div className="bg-white text-black font-sans">
                     <div className="pt-32">
                       <FadeInSection>
-                        <section className="text-center py-16 bg-[#EEC843] text-black px-4 relative">
-                          <div className="flex flex-col md:flex-row items-center md:items-start md:text-left justify-center mx-auto">
-                            {/* Image Section */}
-                            <img
-                              src={webelieve}
-                              alt="we believe"
-                              className="h-72 w-72 mb-6 md:mb-0 md:mr-6 shadow-lg" // Increased size
-                            />
-            
-                            {/* Text Section */}
-                            <div>
-                              <p className="mt-4 text-2xl font-bold"> {/* Increased font size and made bold */}
-                                “We believe every problem has a solution.”
-                              </p>
-                              <p className="mt-4 text-lg max-w-2xl">
-                                We’re dedicated to transforming challenges into opportunities...
-                              </p>
-                              <p className="mt-4 text-black font-semibold">🎯 That’s where we come in.</p>
-                            </div>
+                        <section
+                          className="relative text-center py-16 px-4 bg-cover bg-center"
+                          style={{
+                            backgroundImage: `url(${Trial})`, // Use trial.png as the background image
+                          }}
+                        >
+                          {/* Overlay */}
+                          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+                          {/* Content */}
+                          <div className="relative z-10 text-white max-w-5xl mx-auto">
+                            <p className="text-5xl font-extrabold mb-6 leading-tight">
+                              “We believe every problem has a solution.”
+                            </p>
+                            <p className="text-2xl mb-6 leading-relaxed">
+                              We’re dedicated to transforming challenges into opportunities...
+                            </p>
+                            <p className="text-yellow-400 font-bold text-3xl">
+                              🎯 That’s where we come in.
+                            </p>
                           </div>
                         </section>
                       </FadeInSection>
@@ -175,7 +189,7 @@ const ThinkTankLanding = () => {
                         </p>
                       </div>
         
-                      {/* Values */}
+                      {/* Our Values Section */}
                       <div>
                         <h3 className="text-xl font-bold text-black">Our Values</h3>
                         <ul className="list-disc list-inside text-gray-700 mt-2 space-y-2">
@@ -189,6 +203,9 @@ const ThinkTankLanding = () => {
                           <li>Accountability</li>
                         </ul>
                       </div>
+
+                      {/* Add consistent bottom margin */}
+                      <div className="mb-10"></div> {/* Matches the spacing between Services and Excellence Pillars */}
                     </div>
                   </section>
                 </FadeInSection>
@@ -254,38 +271,41 @@ const ThinkTankLanding = () => {
         </nav>
 
         <div className="pt-32"></div>
-
         {/* Innovative Strategies Section */}
         <FadeInSection>
-    <section className="max-w-5xl mx-auto py-14 px-6">
-      <HeadingWithLine>Innovative Strategies for Transformation</HeadingWithLine>
-      <div className="flex flex-col md:flex-row items-center md:items-start">
-        <img
-          src={InnovationStrategies}
-          alt="Innovation Strategies"
-          className="w-40 h-40 object-cover rounded mb-6 md:mb-0 md:mr-6" />
-        <div className="text-gray-700">
-          <p>
-            We help you gain clarity, craft strategy, and take action to achieve your goals.
+  <section className="max-w-5xl mx-auto pt-30 pb-10 px-6 text-center"> {/* Reduced top padding */}
+    <HeadingWithLine>Innovative Strategies for Transformation</HeadingWithLine>
+    <div className="flex flex-col items-center mt-8">
+      {/* Centered Image */}
+      <img
+        src={InnovationStrategies}
+        alt="Innovation Strategies"
+        className="w-60 h-60 object-cover rounded-lg shadow-lg mb-6"
+      />
+      {/* Text Content */}
+      <div className="text-gray-700 max-w-3xl">
+        <p className="text-lg">
+          We help you gain clarity, craft strategy, and take action to achieve your goals.
+        </p>
+        {isExpanded && (
+          <p className="mt-4 text-lg">
+            No challenge is without an answer. The bigger question is:
+            “What should you do, and how should you do it?” 🎯 That’s where we come in.
+            We help you gain clarity, craft strategy, and take action—so you can move from
+            confusion to confidence, from challenge to change.
           </p>
-          {isExpanded && (
-            <p className="mt-4">
-              No challenge is without an answer. The bigger question is:
-              “What should you do, and how should you do it?” 🎯 That’s where we come in.
-              We help you gain clarity, craft strategy, and take action—so you can move from
-              confusion to confidence, from challenge to change.
-            </p>
-          )}
-          <button
-            className="mt-4 text-yellow-500 font-semibold hover:underline"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            {isExpanded ? "Read Less" : "Read More"}
-          </button>
-        </div>
+        )}
+        <button
+          className="mt-4 text-yellow-500 font-semibold hover:underline"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {isExpanded ? "Read Less" : "Read More"}
+        </button>
       </div>
-    </section>
-  </FadeInSection><FadeInSection>
+    </div>
+  </section>
+</FadeInSection>
+<FadeInSection>
       <section className="py-20 px-6 bg-gray-100 text-center">
         <HeadingWithLine>Empowering Your Journey</HeadingWithLine>
         <p className="max-w-3xl mx-auto text-lg text-gray-700">
@@ -349,93 +369,87 @@ const ThinkTankLanding = () => {
 
         {/* Excellence Pillars Section */}
         <FadeInSection>
-          <section id="programs" className="py-16 px-6 max-w-6xl mx-auto">
-            <HeadingWithLine>Our Excellence Pillars</HeadingWithLine>
-            <div className="grid md:grid-cols-3 gap-10">
-              {[
-                {
-                  img: PersonalExcellence,
-                  title: "Personal Excellence",
-                  desc: "Discover your true self...",
-                  moreContent:
-                    "align with your values, and overcome the limiting beliefs that hold you back. Whether it’s gaining clarity on life goals or cultivating a mindset that embraces growth, our personal development programs are designed to bring out the best in you.",
-                },
-                {
-                  img: ProfessionalExcellence,
-                  title: "Professional Excellence",
-                  desc: "Gain adaptability & purpose...",
-                  moreContent:
-                    "Equip yourself with the skills, resilience, and adaptability needed to succeed in today’s ever-evolving job market. Through career coaching, skill-building workshops, and customized training, we help you advance with purpose and confidence.",
-                },
-                {
-                  img: BusinessExcellence,
-                  title: "Business Excellence",
-                  desc: "Grow your business with strategy...",
-                  moreContent:
-                    "For entrepreneurs and business leaders, excellence means having streamlined processes, clear strategies, and a strong organizational culture. We provide tools for business growth, strategic problem-solving, and Lean Six Sigma-based process improvement, so your business can thrive and stand out.",
-                },
-              ].map((pillar, index) => (
-                <ExcellencePillar key={index} pillar={pillar} />
-              ))}
-            </div>
-          </section>
-        </FadeInSection>
+  <section id="programs" className="py-16 px-6 max-w-6xl mx-auto">
+    <HeadingWithLine className="text-center">Our Excellence Pillars</HeadingWithLine> {/* Centered the title */}
+    <div className="grid md:grid-cols-3 gap-10">
+      {[
+        {
+          img: PersonalExcellence,
+          title: "Personal Excellence",
+          desc: "Discover your true self...",
+          moreContent:
+            "align with your values, and overcome the limiting beliefs that hold you back. Whether it’s gaining clarity on life goals or cultivating a mindset that embraces growth, our personal development programs are designed to bring out the best in you.",
+        },
+        {
+          img: ProfessionalExcellence,
+          title: "Professional Excellence",
+          desc: "Gain adaptability & purpose...",
+          moreContent:
+            "Equip yourself with the skills, resilience, and adaptability needed to succeed in today’s ever-evolving job market. Through career coaching, skill-building workshops, and customized training, we help you advance with purpose and confidence.",
+        },
+        {
+          img: BusinessExcellence,
+          title: "Business Excellence",
+          desc: "Grow your business with strategy...",
+          moreContent:
+            "For entrepreneurs and business leaders, excellence means having streamlined processes, clear strategies, and a strong organizational culture. We provide tools for business growth, strategic problem-solving, and Lean Six Sigma-based process improvement, so your business can thrive and stand out.",
+        },
+      ].map((pillar, index) => (
+        <ExcellencePillar key={index} pillar={pillar} />
+      ))}
+    </div>
+  </section>
+</FadeInSection>
 
         {/* Services Section */}
-        <FadeInSection>
-          <section id="services" className="py-20 px-6 bg-gray-100 text-center">
-            <HeadingWithLine>Our Services</HeadingWithLine>
-            <div className="max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Consulting Services */}
-              <ServiceCard
-                title="Consulting Services"
-                description="Our consulting services provide customized solutions for..."
-                moreContent="businesses seeking to enhance performance and efficiency.We conduct comprehensive assessments to identify areas for improvement and develop strategies that align with your goals."
-              />
+<FadeInSection>
+  <section id="services" className="py-16 px-6 bg-gray-100 text-center"> {/* Reduced bottom padding */}
+    <HeadingWithLine>Our Services</HeadingWithLine>
+    <div className="max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Service Cards */}
+      <ServiceCard
+        title="Consulting Services"
+        description="Our consulting services provide customized solutions for..."
+        moreContent="businesses seeking to enhance performance and efficiency. We conduct comprehensive assessments to identify areas for improvement and develop strategies that align with your goals."
+      />
+      <ServiceCard
+        title="Training and Workshops"
+        description="We offer interactive training sessions designed to..."
+        moreContent="equip individuals and teams with the skills they need for success. Topics include: Self-awareness, Stress and Mental Wealth Awareness, Life Skills, Soft Skills, Entrepreneurship, and Business Re-engineering."
+      />
+      <ServiceCard
+        title="Coaching"
+        description="Our coaching services are tailored to individuals and teams looking to..."
+        moreContent="achieve their personal and professional goals. We focus on mindset transformation, goal setting, and ongoing support to ensure sustainable growth."
+      />
+      <ServiceCard
+        title="Resources"
+        description="Explore our books, collection of articles, tools, and guides..."
+        moreContent="that provide valuable insights on personal development and business strategies. These resources are designed to help you achieve continuous improvement and long-term success."
+      />
+    </div>
+  </section>
+</FadeInSection>
 
-              {/* Training and Workshops */}
-              <ServiceCard
-                title="Training and Workshops"
-                description="We offer interactive training sessions designed to..."
-                moreContent="equip individuals and teams with the skills they need for success.Topics include: Self-awareness, Stress and Mental Wealth Awareness, Life Skills, Soft Skills, Entrepreneurship, and Business Re-engineering."
-              />
-
-              {/* Coaching */}
-              <ServiceCard
-                title="Coaching"
-                description="Our coaching services are tailored to individuals and teams looking to..."
-                moreContent="achieve their personal and professional goals.We focus on mindset transformation, goal setting, and ongoing support to ensure sustainable growth."
-              />
-
-              {/* Resources */}
-              <ServiceCard
-                title="Resources"
-                description="Explore our books, collection of articles, tools, and guides..."
-                moreContent="that provide valuable insights on personal development and business strategies.These resources are designed to help you achieve continuous improvement and long-term success."
-              />
-            </div>
-          </section>
-        </FadeInSection>
-
-        {/* How We Help Section */}
-        <FadeInSection>
-          <section className="bg-gray-50 py-20 px-6 max-w-4xl mx-auto text-center">
-            <img src={HelpImage} alt="Help" className="mx-auto my-6 w-40 h-40 object-contain rounded-full shadow" />
-            <HeadingWithLine>How We Help You Achieve Results</HeadingWithLine>
-            <div className="space-y-6 mt-6">
-            {[
-              "🔹 A Changed Mindset: 💡 'You can’t solve a problem with the same thinking that created it.' – Albert Einstein",
-              "🔹 Identify the Problem: 💡 'A well-defined problem is half solved.'",
-              "🔹 Identify Solutions: 💡 'Don’t limit yourself to what’s obvious. Think in possibilities.'",
-              "🔹 Take Action: 💡 'Ideas are easy. Execution is everything.'",
-              "🔹 Sustain: 💡 'Success is not just about getting there—it’s staying there.'",
-              "🔹 Continuous Improvement: 💡 'Excellence is a moving target. Keep evolving.'",
-            ].map((text, i) => (
-              <p key={i} className="text-gray-700 text-base">{text}</p>
-            ))}
-            </div>
-          </section>
-        </FadeInSection>
+{/* How We Help Section */}
+<FadeInSection>
+  <section className="bg-gray-50 py-16 px-6 max-w-4xl mx-auto text-center"> {/* Reduced top padding */}
+    <img src={HelpImage} alt="Help" className="mx-auto my-6 w-40 h-40 object-contain rounded-full shadow" />
+    <HeadingWithLine>How We Help You Achieve Results</HeadingWithLine>
+    <div className="space-y-6 mt-6">
+      {[
+        "🔹 A Changed Mindset: 💡 'You can’t solve a problem with the same thinking that created it.' – Albert Einstein",
+        "🔹 Identify the Problem: 💡 'A well-defined problem is half solved.'",
+        "🔹 Identify Solutions: 💡 'Don’t limit yourself to what’s obvious. Think in possibilities.'",
+        "🔹 Take Action: 💡 'Ideas are easy. Execution is everything.'",
+        "🔹 Sustain: 💡 'Success is not just about getting there—it’s staying there.'",
+        "🔹 Continuous Improvement: 💡 'Excellence is a moving target. Keep evolving.'",
+      ].map((text, i) => (
+        <p key={i} className="text-gray-700 text-base">{text}</p>
+      ))}
+    </div>
+  </section>
+</FadeInSection>
 
         {/* Testimonials Section */}
         <FadeInSection>
@@ -495,166 +509,175 @@ const ThinkTankLanding = () => {
 
         {/* Talk to Us Section */}
         <FadeInSection>
-  <section id="contact" className="py-20 px-6 bg-customYellow text-black text-center">
-    <HeadingWithLine>Talk to Us</HeadingWithLine>
-    <p className="max-w-xl mx-auto text-lg">
-      We’re here to listen, support, and walk with you. Whether you’re seeking clarity, exploring our services, or ready to take action—this is your starting point.
-    </p>
-    <form ref={formRef} onSubmit={sendEmail} className="mt-8 max-w-2xl mx-auto text-left">
-      
-      <label className="block mb-4">
-        <span className="text-black font-bold">Full Name:</span>
-        <input 
-          type="text" 
-          name="name"
-          className="w-full mt-2 p-3 border rounded" 
-          placeholder="Enter your full name" 
-          required
-        />
-      </label>
+      <section id="contact" className="py-20 px-6 bg-customYellow text-black text-center">
+        <HeadingWithLine className="text-black">Talk to Us</HeadingWithLine>
+        <p className="max-w-xl mx-auto text-lg">
+          We’re here to listen, support, and walk with you. Whether you’re seeking clarity, exploring our services, or ready to take action—this is your starting point.
+        </p>
+        <form ref={formRef} onSubmit={sendEmail} className="mt-8 max-w-2xl mx-auto text-left">
+          {/* Full Name */}
+          <label className="block mb-4">
+            <span className="text-black font-bold">Full Name:</span>
+            <input type="text" name="name" className="w-full mt-2 p-3 border rounded" placeholder="Enter your full name" required />
+          </label>
 
-      <label className="block mb-4">
-        <span className="text-black font-bold">Email Address:</span>
-        <input 
-          type="email" 
-          name="email"
-          className="w-full mt-2 p-3 border rounded" 
-          placeholder="Enter your email address" 
-          required
-        />
-      </label>
+          {/* Email */}
+          <label className="block mb-4">
+            <span className="text-black font-bold">Email Address:</span>
+            <input type="email" name="email" className="w-full mt-2 p-3 border rounded" placeholder="Enter your email address" required />
+          </label>
 
-      <label className="block mb-4">
-        <span className="text-black font-bold">Phone Number (Optional):</span>
-        <input 
-          type="text" 
-          name="phone"
-          className="w-full mt-2 p-3 border rounded" 
-          placeholder="Enter your phone number" 
-        />
-      </label>
+          {/* Phone */}
+          <label className="block mb-4">
+            <span className="text-black font-bold">Phone Number (Optional):</span>
+            <input type="text" name="phone" className="w-full mt-2 p-3 border rounded" placeholder="Enter your phone number" />
+          </label>
 
-      <label className="block mb-4">
-        <span className="text-black font-bold">What area do you need help with?</span>
-        <select 
-          name="help_area"
-          className="w-full mt-2 p-3 border rounded"
-          required
-        >
-          <option value="Personal Excellence">Personal Excellence</option>
-          <option value="Professional Growth">Professional Growth</option>
-          <option value="Business Development">Business Development</option>
-          <option value="Mindset Coaching">Mindset Coaching</option>
-          <option value="Career Guidance">Career Guidance</option>
-          <option value="Custom Training/Consulting">Custom Training/Consulting</option>
-          <option value="Other">Other (please specify)</option>
-        </select>
-      </label>
+          {/* Help Area */}
+          <label className="block mb-4">
+            <span className="text-black font-bold">What area do you need help with?</span>
+            <select name="help_area" className="w-full mt-2 p-3 border rounded" required>
+              <option value="Personal Excellence">Personal Excellence</option>
+              <option value="Professional Growth">Professional Growth</option>
+              <option value="Business Development">Business Development</option>
+              <option value="Mindset Coaching">Mindset Coaching</option>
+              <option value="Career Guidance">Coaching</option>
+              <option value="Custom Training/Consulting">Custom Training/Consulting</option>
+              <option value="Other">Other (please specify)</option>
+            </select>
+          </label>
 
-      <label className="block mb-4">
-        <span className="text-black font-bold">Briefly describe your need or question:</span>
-        <textarea 
-          name="message"
-          className="w-full mt-2 p-3 border rounded" 
-          rows="4" 
-          placeholder="Tell us what you’re hoping to solve, explore, or achieve."
-          required
-        ></textarea>
-      </label>
+          {/* Message */}
+          <label className="block mb-4">
+            <span className="text-black font-bold">Briefly describe your need or question:</span>
+            <textarea name="message" className="w-full mt-2 p-3 border rounded" rows="4" placeholder="Tell us what you’re hoping to solve, explore, or achieve." required></textarea>
+          </label>
 
-      <label className="block mb-4">
-        <input 
-          type="checkbox" 
-          className="mr-2" 
-          required
-        />
-        <span className="text-black">I agree to the privacy policy and give Think Tank Solutions Oriented permission to contact me using the information provided.</span>
-      </label>
+          {/* Agreement */}
+          <label className="block mb-4">
+            <input type="checkbox" className="mr-2" required />
+            <span className="text-black">I agree to the privacy policy and give Think Tank Solutions Oriented permission to contact me using the information provided.</span>
+          </label>
 
-      <button 
-        type="submit" 
-        className="mt-4 px-10 py-4 bg-black text-white font-bold rounded hover:bg-gray-900 transform transition hover:scale-105"
+          {/* Submit */}
+          <button type="submit" className="mt-4 px-10 py-4 bg-black text-white font-bold rounded hover:bg-gray-900 transform transition hover:scale-105">
+            Let’s Talk
+          </button>
+        </form>
+      </section>
+    </FadeInSection>
+
+    {/* Resources Section */}
+    <FadeInSection>
+  <section id="resources" className="py-16 px-6 bg-gray-100 text-center">
+    <HeadingWithLine className="text-center">Explore More Resources</HeadingWithLine>
+    <div className="max-w-6xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Advanced Self-Awareness Course */}
+      <ServiceCard
+        title="Advanced Self-Awareness: Mastering the Inner Landscape for Personal and Professional Excellence"
+        description="This transformative course is designed for individuals who have begun their journey of self-discovery and are ready to deepen their understanding of the self at a profound level."
+        moreContent="Participants will engage with structured frameworks, self-assessment tools, and evidence-informed practices to uncover hidden patterns, challenge limiting identities, and realign with their authentic values and purpose."
       >
-        Let’s Talk
-      </button>
+        <img
+          src={SelfAwareness}
+          alt="Self Awareness"
+          className="w-full h-40 object-cover rounded-lg shadow-lg"
+        />
+        <button
+          onClick={() => window.location.href = "#contact"}
+          className="mt-4 px-6 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 transition"
+        >
+          Enroll Now
+        </button>
+      </ServiceCard>
 
-    </form>
+      {/* Becoming – The Boy Program */}
+      <ServiceCard
+        title="Becoming – The Boy Program: Personal and Business Leadership for Young Men"
+        description="Becoming – The Boy Program is a transformative one-year personal and professional development course designed specifically for young men aged 16 and above."
+        moreContent="Through a structured four-phase journey, participants gain practical tools for personal effectiveness, self-management, 21st-century skills, and entrepreneurship."
+      >
+        <img
+          src={BoyProgram}
+          alt="Boy Program"
+          className="w-full h-40 object-cover rounded-lg shadow-lg"
+        />
+        <button
+          onClick={() => window.location.href = "#contact"}
+          className="mt-4 px-6 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 transition"
+        >
+          Enroll Now
+        </button>
+      </ServiceCard>
 
-    {/* Additional Resources */}
-    <div className="mt-12">
-      <HeadingWithLine>Explore More Resources</HeadingWithLine>
-      <p className="text-lg mt-4">
-        Check out our recommended resources to enhance your journey:
-      </p>
-      <ul className="mt-6 space-y-4">
-        <li>
+      {/* Customer Service Excellence */}
+      <ServiceCard
+        title="Customer Service Excellence Training Course"
+        description="This comprehensive 12-week Customer Service Excellence Training Program is designed to equip participants with the foundational, interpersonal, and professional competencies required to deliver exceptional service experiences across various industries."
+        moreContent="Participants will explore topics such as self-awareness, service ethics, communication excellence, conflict resolution, customer segmentation, digital tools in service, stress management, and continuous professional development."
+      >
+        <img
+          src={CustomerService}
+          alt="Customer Service"
+          className="w-full h-40 object-cover rounded-lg shadow-lg"
+        />
+        <button
+          onClick={() => window.location.href = "#contact"}
+          className="mt-4 px-6 py-2 bg-yellow-500 text-white font-bold rounded hover:bg-yellow-600 transition"
+        >
+          Enroll Now
+        </button>
+      </ServiceCard>
+
+      {/* Udemy Course */}
+      <ServiceCard
+        title="🌟 Udemy Course: Introduction to Self-Awareness"
+        description="A beginner-friendly course to help you understand the basics of self-awareness and personal growth."
+        moreContent={
           <a
             href="https://www.udemy.com/course/introduction-to-self-awareness/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
           >
-            🌟 Udemy Course: Introduction to Self-Awareness
+            Learn more on Udemy
           </a>
-        </li>
-        <li>
-          <a
-            href="https://gracetruthandlovepodcast.buzzsprout.com/2458998/episodes"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            🎙️ Grace, Truth, and Love Podcast
-          </a>
-        </li>
-      </ul>
+        }
+      />
     </div>
   </section>
 </FadeInSection>
 
-{/* Social Links */}
-<div className="mt-8 flex flex-col items-center space-y-4">
-  <a
-    href="https://www.linkedin.com/in/njoki-njuguna-bb84ab115?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center space-x-3 text-black hover:text-gray-700"
-  >
-    <i className="fab fa-linkedin text-2xl"></i> {/* LinkedIn Icon */}
-    <span>Njoki Njuguna</span>
-  </a>
-  <a
-    href="tel:+254722671084"
-    className="flex items-center space-x-3 text-black hover:text-gray-700"
-  >
-    <i className="fas fa-phone text-2xl"></i> {/* Phone Icon */}
-    <span>+254 722 671 084</span>
-  </a>
-  <a
-    href="mailto:transformationagenda2.0@gmail.com"
-    className="flex items-center space-x-3 text-black hover:text-gray-700"
-  >
-    <i className="fas fa-envelope text-2xl"></i> {/* Email Icon */}
-    <span>transformationagenda2.0@gmail.com</span>
-  </a>
-</div>
+    {/* Social Links */}
+    <div className="mt-8 flex flex-col items-center space-y-4">
+      <a href="https://www.linkedin.com/in/njoki-njuguna-bb84ab115" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-black hover:text-gray-700">
+        <i className="fab fa-linkedin text-2xl"></i>
+        <span>Njoki Njuguna</span>
+      </a>
+      <a href="tel:+254722671084" className="flex items-center space-x-3 text-black hover:text-gray-700">
+        <i className="fas fa-phone text-2xl"></i>
+        <span>+254 722 671 084</span>
+      </a>
+      <a href="mailto:transformationagenda2.0@gmail.com" className="flex items-center space-x-3 text-black hover:text-gray-700">
+        <i className="fas fa-envelope text-2xl"></i>
+        <span>thinktanksolutionsoriented@gmail.com</span>
+      </a>
+    </div>
 
-<footer className="bg-gray-800 text-white py-6 text-center">
-  <p className="text-sm">© 2025 Think Tank Solutions Oriented. All rights reserved.</p>
-  <p className="text-sm">Privacy Policy | Terms of Service</p>
-</footer>
-<div>
-{/* Scroll to Top Button */}
-{isScrolled && (
-  <button
-    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-    className="fixed bottom-6 right-6 bg-[#EEC843] text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300"
-  >
-    ↑ Top
-  </button>
-)}
-        </div>
-</div>
+    {/* Footer */}
+    <footer className="bg-gray-800 text-white py-6 text-center">
+      <p className="text-sm">© 2025 Think Tank Solutions Oriented. All rights reserved.</p>
+      <p className="text-sm">Privacy Policy | Terms of Service</p>
+    </footer>
+
+    {/* Scroll to Top */}
+    {isScrolled && (
+      <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="fixed bottom-6 right-6 bg-[#EEC843] text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300">
+        ↑ Top
+      </button>
+    )}
+  </div>
 );
-}
+};
+
 export default ThinkTankLanding;
