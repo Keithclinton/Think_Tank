@@ -117,98 +117,122 @@ const ThinkTankLanding = () => {
         
                 <div>
                 {/* About Us Section */}
-                <FadeInSection>
-                  <section id="about" className="py-20 px-6 bg-gray-100 text-center">
-                    <HeadingWithLine>About Us</HeadingWithLine>
-                    <div className="max-w-5xl mx-auto text-left mt-8 space-y-8">
-                      {/* Introduction */}
-                      <div>
-                        <p className="text-gray-700 text-lg leading-relaxed">
-                          At <span className="font-bold text-black">Think Tank Solutions Oriented</span>, we believe every problem has a solution.
-                          In life, challenges are inevitable, whether personal, professional, or business-related. What truly makes the difference is how prepared and proactive we are in addressing them.
-                          Our mission is to bridge the gap between where you are and where you want to go because that gap is often filled with what you don’t yet know.
-                        </p>
-                        <p className="text-gray-700 text-lg leading-relaxed mt-4">
-                          We exist to help you uncover that knowledge, develop the right skills, and apply practical tools, roadmaps, and proven frameworks that lead to real results.
-                        </p>
-                      </div>
-        
-                      {/* Who We Are */}
-                      <div>
-                        <h3 className="text-xl font-bold text-black">Who We Are</h3>
-                        <p className="text-gray-700 mt-2 leading-relaxed">
-                          We are a multidisciplinary team of transformation experts—consultants, trainers, coaches, and mentors—committed to helping individuals and organizations unlock their potential and thrive.
-                          We don’t offer one-size-fits-all solutions; instead, we take the time to understand your unique challenges and goals so we can guide you toward lasting change.
-                        </p>
-                      </div>
-        
-                      {/* What’s In It For You */}
-                      <div>
-                        <h3 className="text-xl font-bold text-black">What’s In It For You?</h3>
-                        <p className="text-gray-700 mt-2 leading-relaxed">
-                          Whether you’re a young professional seeking direction, a business leader navigating change, or someone pursuing personal transformation—we equip you with:
-                        </p>
-                        <ul className="list-disc list-inside text-gray-700 mt-4 space-y-2">
-                          <li>Knowledge to make informed decisions</li>
-                          <li>Tools and templates to implement change</li>
-                          <li>Best practices and principles to guide your journey</li>
-                          <li>Roadmaps and frameworks to create a clear path forward</li>
-                          <li>Support systems to sustain and continuously improve</li>
-                        </ul>
-                      </div>
-        
-                      {/* Why Choose Us */}
-                      <div>
-                        <h3 className="text-xl font-bold text-black">Why Choose Us?</h3>
-                        <p className="text-gray-700 mt-2 leading-relaxed">
-                          Because we don’t just give you answers, we empower you to become your own solution. We’re here to help you move with clarity, operate with purpose, and rise with excellence in every area of your life and work.
-                        </p>
-                      </div>
-        
-                      {/* Vision */}
-                      <div>
-                        <h3 className="text-xl font-bold text-black">Our Vision</h3>
-                        <p className="text-gray-700 mt-2">
-                          To create a world where individuals and businesses thrive through effective solutions and continuous improvement.
-                        </p>
-                      </div>
-        
-                      {/* Mission */}
-                      <div>
-                        <h3 className="text-xl font-bold text-black">Our Mission</h3>
-                        <p className="text-gray-700 mt-2">
-                          To inspire transformation by helping people and businesses understand their challenges, reimagine possibilities, and achieve meaningful success.
-                        </p>
-                      </div>
-        
-                      {/* Intention */}
-                      <div>
-                        <h3 className="text-xl font-bold text-black">Our Intention</h3>
-                        <p className="text-gray-700 mt-2">
-                          To cultivate a mentality for extraordinary results.
-                        </p>
-                      </div>
-        
-                      {/* Our Values Section */}
-                      <div>
-                        <h3 className="text-xl font-bold text-black">Our Values</h3>
-                        <ul className="list-disc list-inside text-gray-700 mt-2 space-y-2">
-                          <li>Integrity</li>
-                          <li>Collaboration</li>
-                          <li>Empowerment and Holistic Development</li>
-                          <li>Excellence</li>
-                          <li>Continuous Improvement</li>
-                          <li>Client-Centricity</li>
-                          <li>Innovation</li>
-                          <li>Accountability</li>
-                        </ul>
-                      </div>
+<FadeInSection>
+  <section id="about" className="py-20 px-6 bg-gray-100 text-center">
+    <HeadingWithLine>About Us</HeadingWithLine>
+    <div className="max-w-5xl mx-auto text-left mt-8 space-y-8">
+      {/* Introduction */}
+      <div>
+        <p className="text-gray-700 text-lg leading-relaxed">
+          At <span className="font-bold text-black">Think Tank Solutions Oriented</span>, we believe every problem has a solution.
+          In life, challenges are inevitable, whether personal, professional, or business-related. What truly makes the difference is how prepared and proactive we are in addressing them.
+          Our mission is to bridge the gap between where you are and where you want to go because that gap is often filled with what you don’t yet know.
+        </p>
+        <p className="text-gray-700 text-lg leading-relaxed mt-4">
+          We exist to help you uncover that knowledge, develop the right skills, and apply practical tools, roadmaps, and proven frameworks that lead to real results.
+        </p>
+      </div>
 
-                      {/* Add consistent bottom margin */}
-                      <div className="mb-10"></div> {/* Matches the spacing between Services and Excellence Pillars */}
-                    </div>
-                  </section>
-                </FadeInSection>
+      {/* Read More Button */}
+      {!isExpanded && (
+        <div className="text-center mt-4">
+          <button
+            className="text-yellow-500 font-semibold hover:underline"
+            onClick={() => setIsExpanded(true)}
+          >
+            Read More
+          </button>
+        </div>
+      )}
+
+      {/* Remaining Content */}
+      {isExpanded && (
+        <>
+          {/* Who We Are */}
+          <div>
+            <h3 className="text-xl font-bold text-black">Who We Are</h3>
+            <p className="text-gray-700 mt-2 leading-relaxed">
+              We are a multidisciplinary team of transformation experts—consultants, trainers, coaches, and mentors—committed to helping individuals and organizations unlock their potential and thrive.
+              We don’t offer one-size-fits-all solutions; instead, we take the time to understand your unique challenges and goals so we can guide you toward lasting change.
+            </p>
+          </div>
+
+          {/* What’s In It For You */}
+          <div>
+            <h3 className="text-xl font-bold text-black">What’s In It For You?</h3>
+            <p className="text-gray-700 mt-2 leading-relaxed">
+              Whether you’re a young professional seeking direction, a business leader navigating change, or someone pursuing personal transformation—we equip you with:
+            </p>
+            <ul className="list-disc list-inside text-gray-700 mt-4 space-y-2">
+              <li>Knowledge to make informed decisions</li>
+              <li>Tools and templates to implement change</li>
+              <li>Best practices and principles to guide your journey</li>
+              <li>Roadmaps and frameworks to create a clear path forward</li>
+              <li>Support systems to sustain and continuously improve</li>
+            </ul>
+          </div>
+
+          {/* Why Choose Us */}
+          <div>
+            <h3 className="text-xl font-bold text-black">Why Choose Us?</h3>
+            <p className="text-gray-700 mt-2 leading-relaxed">
+              Because we don’t just give you answers, we empower you to become your own solution. We’re here to help you move with clarity, operate with purpose, and rise with excellence in every area of your life and work.
+            </p>
+          </div>
+
+          {/* Vision */}
+          <div>
+            <h3 className="text-xl font-bold text-black">Our Vision</h3>
+            <p className="text-gray-700 mt-2">
+              To create a world where individuals and businesses thrive through effective solutions and continuous improvement.
+            </p>
+          </div>
+
+          {/* Mission */}
+          <div>
+            <h3 className="text-xl font-bold text-black">Our Mission</h3>
+            <p className="text-gray-700 mt-2">
+              To inspire transformation by helping people and businesses understand their challenges, reimagine possibilities, and achieve meaningful success.
+            </p>
+          </div>
+
+          {/* Intention */}
+          <div>
+            <h3 className="text-xl font-bold text-black">Our Intention</h3>
+            <p className="text-gray-700 mt-2">
+              To cultivate a mentality for extraordinary results.
+            </p>
+          </div>
+
+          {/* Our Values Section */}
+          <div>
+            <h3 className="text-xl font-bold text-black">Our Values</h3>
+            <ul className="list-disc list-inside text-gray-700 mt-2 space-y-2">
+              <li>Integrity</li>
+              <li>Collaboration</li>
+              <li>Empowerment and Holistic Development</li>
+              <li>Excellence</li>
+              <li>Continuous Improvement</li>
+              <li>Client-Centricity</li>
+              <li>Innovation</li>
+              <li>Accountability</li>
+            </ul>
+          </div>
+
+          {/* Read Less Button */}
+          <div className="text-center mt-4">
+            <button
+              className="text-yellow-500 font-semibold hover:underline"
+              onClick={() => setIsExpanded(false)}
+            >
+              Read Less
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</FadeInSection>
         </div>
 
         {/* Navbar */}
@@ -540,7 +564,7 @@ const ThinkTankLanding = () => {
               <option value="Personal Excellence">Personal Excellence</option>
               <option value="Professional Growth">Professional Growth</option>
               <option value="Business Development">Business Development</option>
-              <option value="Mindset Coaching">Mindset Coaching</option>
+              <option value="Mindset Coaching">Enrollment</option>
               <option value="Career Guidance">Coaching</option>
               <option value="Custom Training/Consulting">Custom Training/Consulting</option>
               <option value="Other">Other (please specify)</option>
@@ -628,22 +652,6 @@ const ThinkTankLanding = () => {
           Enroll Now
         </button>
       </ServiceCard>
-
-      {/* Udemy Course */}
-      <ServiceCard
-        title="🌟 Udemy Course: Introduction to Self-Awareness"
-        description="A beginner-friendly course to help you understand the basics of self-awareness and personal growth."
-        moreContent={
-          <a
-            href="https://www.udemy.com/course/introduction-to-self-awareness/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            Learn more on Udemy
-          </a>
-        }
-      />
     </div>
   </section>
 </FadeInSection>
