@@ -656,6 +656,56 @@ const ThinkTankLanding = () => {
   </section>
 </FadeInSection>
 
+{/* Excellence Toolkit Section */}
+<FadeInSection>
+  <section className="py-20 px-6 bg-black text-white text-center">
+    <div className="max-w-4xl mx-auto">
+      <img
+       src={Logo} 
+       alt="Logo"
+        className="mx-auto mb-6"
+        style={{ marginTop: "-40px" }}
+        width="150"
+      />
+      <h1 className="text-3xl font-bold mb-4">
+        Ready to Become Who You Were Meant to Be?
+      </h1>
+      <p className="text-lg leading-relaxed mb-6">
+        Download our <span className="text-yellow-500 font-bold">Free Excellence Starter Toolkit</span> – a powerful self-reflection and planning guide that helps you identify what’s holding you back and sets you on a path to your best self.
+      </p>
+      <p className="text-lg leading-relaxed mb-6">
+        Based on our holistic, principle-based framework (<strong>who + what + where + how = why + result</strong>), this guide is your first step toward clarity, personal power, and transformation.
+      </p>
+      <a
+        href="Excellence_Starter_Toolkit_ThinkTank.pdf" // Replace with the actual file path
+        download
+        className="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
+      >
+        Download the Free Toolkit
+      </a>
+      <div className="mt-10">
+        <p className="text-lg mb-4">
+          Want more tools to unlock your excellence? Join our email series and stay inspired!
+        </p>
+        <form action="#" method="POST" className="flex justify-center">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            required
+            className="p-3 w-2/3 md:w-1/2 border-none rounded-l-lg"
+          />
+          <button
+            type="submit"
+            className="bg-yellow-500 text-black px-6 py-3 rounded-r-lg font-semibold hover:bg-yellow-600 transition"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</FadeInSection>
+
     {/* Social Links */}
     <div className="mt-8 flex flex-col items-center space-y-4">
       <a href="https://www.linkedin.com/in/njoki-njuguna-bb84ab115" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-black hover:text-gray-700">
